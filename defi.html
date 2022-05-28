@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Page Application</title>
+
+
+    <!-- custom css files were attached here -->
+    <link rel="stylesheet" href="./app/css/sty.css">
+
+
+    <!-- Angular Material CSS  used here -->
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.min.css">
+    <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://rawgit.com/angular/bower-material/master/angular-material.css" /> -->
+</head>
+
+<body ng-cloak layout="column">
+
+    <md-toolbar>
+        <h3>Angular Material Starter</h3>
+    </md-toolbar>
+
+    <!-- This is navigation bar -->
+
+    <div class="container-fluid" layout="row" flex>
+        <md-sidenav md-is-locked-open="true" class="md-whiteframe-z2">
+            <md-list>
+                <md-list-item>
+                    <a href="#!signUp">
+                        <md-button>
+                            <img src="./app/image/tutor.png" class="avatar">
+                            Student Sign up
+                        </md-button>
+                    </a>
+                </md-list-item>
+
+                <md-list-item>
+                    <a href="#!sAdmin">
+                        <md-button>
+                            <img src="./app/image/students.png" class="avatar">
+                            Student Login In
+                        </md-button>
+                    </a>
+                </md-list-item>
+
+            </md-list>
+        </md-sidenav>
+
+        <!-- Here onwards content take palce -->
+
+        <md-content id="content" flex>
+            <div ng-view></div>
+        </md-content>
+    </div>
+
+    <!-- Angular Material Dependencies -->
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.min.js"></script>
+    <script src="./bower_components/angular-messages/angular-messages.min.js"></script>
+    <script src="./bower_components/angular-route/angular-route.js"></script>
+    <!-- <script src="https://rawgit.com/angular/bower-material/master/angular-material.js"></script> -->
+
+    <!-- Angular Material Javascript used here -->
+    <script src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+    <script src="./app/js/script.js"></script>
+    <script src="./app/js/studata.js"></script>
+    <script src="./app/js/loginsc.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!-- Here is the Login page start -->
+
+
+<div ng-controller="loging">
+
+    <md-toolbar class="md-accent">
+        <center>
+            Welcome to Login page
+            <img src="app/image/students.png" alt="image of tutor" class="avatar">
+        </center>
+    </md-toolbar>
+    {{alertClass}}
+    {{alertMsg}}
+    {{alertMessage}}
+    <span ng-show="{{alertMsg}}">
+        hello
+    </span>
+    <div class="alert {{alertClass}}" role="alert" ng-show="{{alertMsg}}">
+        <strong>Holy molly</strong> {{alertMessage}} Hi slim
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <form name="loginForm" method="post">
+
+
+        <md-input-container class="md-block">
+            <label>Email</label>
+            <input required type="email" name="email" ng-model="ldata.email" required ng-pattern="/^.+@.+\..+$/" />
+
+            <div ng-messages="loginForm.email.$error" role="alert">
+                <div ng-message="required">This is required.</div>
+                <div ng-message-exp="['pattern']">
+                    Invalid Email Id
+                </div>
+            </div>
+        </md-input-container>
+
+
+
+        <md-input-container class="md-block">
+            <label> Password</label>
+            <input type="password" rows="2" md-select-on-focus name="spassword" ng-model="ldata.spassword"
+                md-minlength="8" required md-no-asterisk>
+            <div ng-messages="loginForm.spassword.$error">
+
+                <div ng-message="required">This is required.</div>
+                <div ng-message="md-minlength">Name Password must be above 8 Charcter</div>
+
+            </div>
+        </md-input-container>
+
+        <md-button ng-disabled="loginForm.$invalid" class="md-warn md-raised md-hue-1" ng-click="logon()" name="submit">
+            LogIn
+        </md-button>
+
+        <a href="#!signUp">
+            <md-button class="md-accent">
+                <img src="./app/image/tutor.png" class="avatar">
+                New to the Page!
+            </md-button>
+        </a>
+
+    </form>
+
+
+    <!-- <pre>WE are shown this
+        {{ dab | json }}
+    </pre> -->
+
+</div>
+
+<script src="../js/loginsc.js"></script>
+
+
+
+<!-- End of the Login page -->
