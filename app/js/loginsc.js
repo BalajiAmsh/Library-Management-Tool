@@ -1,5 +1,5 @@
-app.controller('loging', ['$scope', '$http', function ($scope, $http) {
-    $scope.alertMsg = false;
+app.controller('loging', ['$scope', '$http', function ($scope, $http, $routeProvider,) {
+    $scope.alm = true;
     $scope.logon = function () {
         $http({
             method: "POST",
@@ -14,16 +14,24 @@ app.controller('loging', ['$scope', '$http', function ($scope, $http) {
 
             if (obj.$error == null) {
                 if (obj.Authendication == 1 && obj.status == 'Login Successfully') {
-                    alert('We are back to business ')
-                    $scope.alertMsg = true;
-                    $scope.alertClass = 'alert-success'
-                    $scope.alertMessage = obj.status;
+                    $scope.alm = true;
+                    $scope.altcls = 'alert-success'
+                    $scope.altmsg = obj.status;
+
+                    // This is Route provider
+
+                    // End of the Route provider!!
+                    // window: {
+                    //     location: {
+                    //         href: "http://localhost/ngJS/PROJECT/main.index.html"
+                    //     }
+                    // }
+                    window.location.replace("http://localhost/ngJS/PROJECT/main.index.html");
                 }
                 else {
-                    alert('Invalid Username or password')
-                    $scope.alertMsg = true;
-                    $scope.alertClass = 'alert-danger'
-                    $scope.alertMessage = obj.status;
+                    $scope.alm = true;
+                    $scope.altcls = 'alert-danger'
+                    $scope.altmsg = obj.status;
                 }
 
             } else {

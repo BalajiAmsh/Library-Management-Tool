@@ -9,15 +9,9 @@
             <img src="app/image/students.png" alt="image of tutor" class="avatar">
         </center>
     </md-toolbar>
-    {{alertClass}}
-    {{alertMsg}}
-    {{alertMessage}}
-    <span ng-show="{{alertMsg}}">
-        hello
-    </span>
-    <div class="alert {{alertClass}}" role="alert" ng-show="{{alertMsg}}">
-        <strong>Holy molly</strong> {{alertMessage}} Hi slim
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <div class="alert {{altcls}}" role="alert" ng-show="{{alm}}">
+        {{altmsg}}
+        <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
     </div>
 
     <form name="loginForm" method="post">
@@ -55,8 +49,8 @@
 
         <a href="#!signUp">
             <md-button class="md-accent">
-                <img src="./app/image/tutor.png" class="avatar">
                 New to the Page!
+                <img src="./app/image/tutor.png" class="avatar">
             </md-button>
         </a>
 
