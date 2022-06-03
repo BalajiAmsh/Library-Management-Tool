@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Library Management Tool </title>
+  <meta name="description" content="Angular Material: UI Components with Dynamic Data">
+
+  <link rel="stylesheet" href="../../bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="../css/sty.css" />
+  <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+
+</head>
+
+<body ng-app="user" ng-cloak layout="column">
+
+  <md-toolbar>
+    <!-- <img src="app/image/fixed-banner-image.svg" alt="logo-icon"> -->
+    <h3>Angular Material Starter</h3>
+  </md-toolbar>
+
+  <div class="container-fluid" layout="row" flex>
+    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+      <md-list>
+        <md-list-item ">
+          <a href=" #!addbook">
+          <md-button class="md-raised md-warm md-hue-1" style="padding-right: 45px;">
+            <img src="../image/3300821.png" class="avatar" alt="Adding book logo">
+            Add Book
+          </md-button>
+          </a>
+        </md-list-item>
+
+
+        <md-list-item>
+          <a href="#!managebook">
+            <md-button class="md-raised md-warm">
+              <img src="../image/1744105.png" class="avatar" alt="Managing Books logo">
+              Manage Books
+            </md-button>
+          </a>
+        </md-list-item>
+      </md-list>
+    </md-sidenav>
+
+    <md-content flex id="content">
+      <div ng-view></div>
+    </md-content>
+  </div>
+
+
+  <!-- Here onwards Script file were added -->
+  <script src="../../bower_components/angular/angular.js"></script>
+  <script src="../../bower_components/angular-animate/angular-animate.js"></script>
+  <script src="../../bower_components/angular-aria/angular-aria.js"></script>
+  <script src="../../bower_components/angular-material/angular-material.js"></script>
+  <script src="../../bower_components/angular-route/angular-route.js"></script>
+  <script src="../../bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="../js/main.script.js"></script>
+  <script src="../js/mainController/addBookCtr.js"></script>
+  <script src="../js/mainController/manageBookCtr.js"></script>
+  <link rel=“stylesheet” href='../css/app.css'>
+
+  <script src="../../bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
+  <script src="../../bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <!-- End of the Script files  -->
+
+  <!-- <script>
+    var main_app = angular.module('user', ['ngMaterial', 'ngRoute']);
+
+    main_app.config(function ($routeProvider, $locationProvider) {
+      $routeProvider
+        .when("/addbook", {
+          templateUrl: "app/template/main.content/add.book.html",
+          controller: 'ad_book'
+        })
+        .when("/managebook", {
+          templateUrl: "app/template/main.content/manage.book.html",
+          controller: 'mng_book'
+        })
+    })
+
+  </script> -->
+
+</body>
+
+</html>

@@ -26,7 +26,7 @@ app.controller('loging', ['$scope', '$http', function ($scope, $http, $routeProv
                     //         href: "http://localhost/ngJS/PROJECT/main.index.html"
                     //     }
                     // }
-                    window.location.replace("http://localhost/ngJS/PROJECT/main.index.html");
+                    window.location.replace("app/template/main.index.html");
                 }
                 else {
                     $scope.alm = true;

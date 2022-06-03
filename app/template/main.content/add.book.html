@@ -1,0 +1,87 @@
+<div class="container-fluid md-whiteframe-4dp m-2" ng-controller="ad_book">
+
+    <h1 class="display-9 text-center mb-5">
+        Registering Book
+    </h1>
+
+    <div class="container">
+        <form class="mb-5" name="bookForm" method="post">
+            <div class="m-3 row">
+                <div class="col-3">
+                    <label class="form-label">Describe the Detail of the Book</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Name</label>
+                        <input type="text" rows="5" name="bookName" md-no-asterisk ng-model="bookInfo.bookName">
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Book Serial Number:</label>
+                        <input type="text" rows="5" name="authorName" md-no-asterisk ng-model="bookInfo.bookNumber">
+                    </md-input-container>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Author Name:</label>
+                        <input type="text" rows="5" name="authorName" md-no-asterisk ng-model="bookInfo.authorName">
+                    </md-input-container>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <md-select placeholder="Assign to the Category" ng-model="bookInfo.category"
+                        md-on-open="loadCategories()" class="md-block" style="min-width:
+                    200px;">
+                        <md-option ng-value="category" ng-repeat="category in categories">
+                            {{category.name}}
+                        </md-option>
+                    </md-select>
+                </div>
+                <div class="col-4">
+                    <h6 class="lean">The Book is under: {{ bookInfo.category ? bookInfo.category.name : 'No one yet' }}
+                    </h6>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-5">
+                    <md-input-container class="md-icon-float md-block">
+                        <label>Book Price:</label>
+                        <input type="number" rows="5" name="bookPrice" md-no-asterisk ng-model="bookInfo.bookPrice">
+                    </md-input-container>
+                </div>
+                <!-- <div class="col-3">
+                    <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+                        ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100">Select</div>
+                </div> -->
+
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <input class="form-control" type="file" name="file" ngf-select ng-model="file"
+                        ngf-pattern="'image/*'" ngf-accept="'image/*'">
+                </div>
+                <!-- <div class="col-4">
+                    <button class="btn btn-dark">upload</button>
+
+                </div> -->
+
+                <div class="row m-5">
+                    <div class="col-4 m-3">
+                        <input type="submit" value="Submit Book" ng-click="submit()" class="btn btn-primary">
+                    </div>
+                </div>
+
+        </form>
+    </div>
+
+
+</div>

@@ -2,10 +2,6 @@ var app = angular.module('MyApp', ['ngMaterial', 'ngRoute', 'ngMessages',]);
 
 app.config(function ($routeProvider, $locationProvider) {
     $routeProvider
-        // .when("/", {
-        //     templateUrl: "app/template/defaultlog.html",
-        //     controller: 'deflog'
-        // })
         .when("/signUp", {
             templateUrl: "app/template/signUp.html",
             controller: 'signup'
