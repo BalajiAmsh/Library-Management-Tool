@@ -1,4 +1,4 @@
-main_app.controller('ad_book', function ($timeout, $scope, Upload) {
+main_app.controller('ad_book', function ($timeout, $scope, $location, Upload) {
     $scope.message = "We are in the Register catageory";
 
     $scope.category = null;
@@ -14,7 +14,8 @@ main_app.controller('ad_book', function ($timeout, $scope, Upload) {
                 { id: 2, name: 'Financial' },
                 { id: 3, name: 'Education' },
                 { id: 4, name: 'Entertainment' },
-                { id: 5, name: 'Astronomy' }
+                { id: 5, name: 'Astronomy' },
+                { id: 6, name: 'Others' }
             ];
 
         }, 650);
@@ -31,22 +32,45 @@ main_app.controller('ad_book', function ($timeout, $scope, Upload) {
 
 
     $scope.upload = function (file) {
+        //Here is the Condition to assign the folder
+        if ($scope.bookInfo.category.name == 'Philosophy') {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Philosophy/'
+        }
+        else if ($scope.bookInfo.category.name == 'Financial') {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Financial/'
+        }
+        else if ($scope.bookInfo.category.name == 'Education') {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Education/'
+        }
+        else if ($scope.bookInfo.category.name == 'Entertainment') {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Entertainment/'
+        }
+        else if ($scope.bookInfo.category.name == 'Astronomy') {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Astronomy/'
+        }
+        else {
+            $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Others/'
+        }
         Upload.upload({
             url: '../php/main.content/addBook.php',
             method: 'POST',
             file: file,
             data: {
                 'bookInfo': $scope.bookInfo,
-                'targetPath': '/var/www/html/ngJS/mform/app/image/uploadImage/Philosophy/'
+                'targetPath': $scope.tarpath
             }
         }).then(function (resp) {
-            console.log('Success ' + resp.config.data.file.name + '  uploaded ');
-        }, function (resp) {
-            console.log('Error status: ' + resp.status);
-        }, function (evt) {
-            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-        }
+            obj = JSON.stringify(resp.data);
+            obj = JSON.parse(obj)
+            if (obj.status == 1) {
+                alert(JSON.stringify(obj.message))
+                console.log('Success ' + resp.config.data.file.name + '  uploaded ');
+                window.location.replace("#!addbook");
+            }
+            else {
+                alert(JSON.stringify(obj.message))
+            }
+        },
         );
     };
 

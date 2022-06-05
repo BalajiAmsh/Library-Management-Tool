@@ -8,14 +8,17 @@
   <link rel="stylesheet" href="../../bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="../css/sty.css" />
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 
 </head>
 
 <body ng-app="user" ng-cloak layout="column">
 
-  <md-toolbar>
-    <!-- <img src="app/image/fixed-banner-image.svg" alt="logo-icon"> -->
-    <h3>Angular Material Starter</h3>
+  <md-toolbar layout="row">
+    <h3>
+      <img src="../image/fixed-banner-image.svg" height="100px;" alt="logo-icon">
+      Library Management Tool
+    </h3>
   </md-toolbar>
 
   <div class="container-fluid" layout="row" flex>
@@ -62,6 +65,9 @@
 
   <script src="../../bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
   <script src="../../bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="http://code.angularjs.org/1.2.16/angular-resource.js"></script>
+  <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+  <!-- <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
   <!-- End of the Script files  -->
 
   <!-- <script>

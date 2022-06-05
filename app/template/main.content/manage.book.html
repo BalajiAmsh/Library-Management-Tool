@@ -1,7 +1,79 @@
-<div class="container-fluid">
-    <h2 class="display-6">
-        We are in the Manage book page!
-        <br>
+<div class="container-fluid" ng-controller="manageBookCtr">
+    <h2 class="display-6" layout="row">
+        {{message}}&nbsp;
+        <p class="text-danger">
+            {{msg}}
+        </p>
     </h2>
-    {{message}}
+    <md-button class="md-raised md-warm" ng-click="managingData()" ng-show="prmitBtn">
+        Manage Book
+    </md-button>
+    <!-- <md-toolbar class="md-table-toolbar md-default padding-bottom-20" ng-show="prmitTable">
+
+    </md-toolbar> -->
+    <table class="table table-striped" ng-show="prmitTable">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">IMAGE</th>
+                <th scope="col">BOOK NAME</th>
+                <th scope="col">AUTHOR</th>
+                <th scope="col">CATEGORY</th>
+                <th scope="col">BOOK PRICE</th>
+                <th scope="col">ADDED DATE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="book in bookContent | filter : paginate ">
+                <th scope="row"> {{ book.id }} </th>
+                <td> <img src=" {{ book.imageURL }} " alt="image of the book" height="52px" class="avt"> </td>
+                <td> {{ book.name | uppercase }} </td>
+                <td> {{ book.Author_name | uppercase }} </td>
+                <td> {{ book.category | lowercase }} </td>
+                <td> {{ book.book_price | currency:"र ":1 }} </td>
+                <td> {{ book.add_date | date:"dd/MMM/yy" }} </td>
+            </tr>
+        </tbody>
+    </table>
+    <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
+        items-per-page="numPerPage" class="pagination-sm" ng-show="prmitTable">
+    </pagination>
 </div>
+
+
+
+<!-- Here the part of the filter of pagination but not working
+<tr ng-repeat="book in bookContent | filter : paginate">
+    <th scope="row"> {{ book.id }} </th>
+    <td> <img src=" {{ book.imageURL }} " alt="image of the book" height="52px" class="avt"> </td>
+    <td> {{ book.name | uppercase }} </td>
+    <td> {{ book.Author_name | uppercase }} </td>
+    <td> {{ book.category | lowercase }} </td>
+    <td> {{ book.book_price | currency:"र ":1 }} </td>
+    <td> {{ book.add_date | date:"dd/MMM/yy" }} </td>
+</tr>
+</tbody>
+</table>
+<pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
+items-per-page="numPerPage" class="pagination-sm">
+</pagination> -->
+
+
+<!-- Here is the another method with pegination but not working
+
+<tfoot>
+    <td colspan="6">
+        <ul class="pagination pull-right">
+            <li ng-class="{disabled: currentPage == 0}">
+                <a class="page-link" href ng-click="prevPage()">« Prev</a>
+            </li>
+            <li ng-repeat="n in range(bookContent.length)" ng-class="{active: n == currentPage}"
+                ng-click="setPage()">
+                <a class="page-link" href ng-bind="n + 1">1</a>
+            </li>
+            <li ng-class="{disabled: currentPage == bookContent.length - 1}">
+                <a class="page-link" href ng-click="nextPage()">Next »</a>
+            </li>
+        </ul>
+    </td>
+</tfoot> -->

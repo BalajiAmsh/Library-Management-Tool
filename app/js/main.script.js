@@ -1,6 +1,6 @@
 // Create and prepare the 'users' module (with its controllers and dataservices) 
 
-var main_app = angular.module('user', ['ngMaterial', 'ngRoute', 'ngFileUpload']);
+var main_app = angular.module('user', ['ngMaterial', 'ngRoute', 'ngFileUpload', 'ui.bootstrap', 'ngResource']);
 
 main_app.config(function ($routeProvider, $locationProvider) {
   $routeProvider
