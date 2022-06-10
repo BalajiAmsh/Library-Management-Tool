@@ -28,4 +28,19 @@ main_app.controller('manageBookCtr', function ($timeout, $scope, $http) {
         index = $scope.bookContent.indexOf(value);
         return (begin <= index && index < end);
     };
+
+    $scope.Column = "id";
+    $scope.reverseSort = false;
+
+    $scope.sortData = function (column) {
+        $scope.reverseSort = ($scope.sortColumn == column) ? !$scope.reverseSort : false;
+        $scope.sortColumn = column;
+    }
+    $scope.getSortClass = function (column) {
+        if ($scope.sortColumn == column) {
+            return $scope.reverseSort ? 'icon-arrow-down' : 'icon-arrow-up'
+        }
+        return '';
+    }
+
 });

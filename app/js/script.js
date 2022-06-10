@@ -8,23 +8,39 @@ app.config(function ($routeProvider, $locationProvider) {
         })
         .when("/sAdmin", {
             templateUrl: "app/template/sAdmin.html",
-            controller: 'admin'
+            controller: 'loging'
         })
-        .when("/main-index", {
-            templateUrl: "http://localhost/ngJS/PROJECT/main.index.html",
-            controller: 'ma-ind'
-        })
+
 });
 
 app.controller('signup', function ($scope) {
     $scope.message = "First";
 });
 
-app.controller('admin', function ($scope) {
-    $scope.message = "admin";
+// app.controller('loging', function ($scope, messages) {
+//     $scope.message = $scope.userNam;
+
+//     const self = this;
+//     self.addMessage = function (message) {
+//         // add message to local service
+//         messages.add(message);
+
+//         self.newMessage = $scope.userNam;
+//     };
+// });
+
+// service
+app.factory('messages', function () {
+    const messages = {};
+
+    messages.list = [];
+
+    messages.add = function (message) {
+        // add new item to messages in post module and increment id
+        messages.list.push({ id: messages.list.length, text: message });
+    };
+
+    return messages;
 });
-app.controller('deflog', function ($scope) {
-    $scope.temp = "We are in Default Page"
-})
 
 

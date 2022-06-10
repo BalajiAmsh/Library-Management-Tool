@@ -8,21 +8,23 @@
   <link rel="stylesheet" href="../../bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="../css/sty.css" />
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../bower_components/simplelineicons/css/simple-line-icons.css">
   <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
 
 </head>
 
 <body ng-app="user" ng-cloak layout="column">
 
-  <md-toolbar layout="row">
+  <md-toolbar layout="row" ng-controller="userFine">
     <h3>
       <img src="../image/fixed-banner-image.svg" height="100px;" alt="logo-icon">
       Library Management Tool
     </h3>
+    {{ searchObject }}
   </md-toolbar>
 
-  <div class="container-fluid" layout="row" flex>
-    <md-sidenav md-is-locked-open="true" class="md-whiteframe-4dp">
+  <div layout="row" flex>
+    <md-sidenav md-is-locked-open="true" flex="20" class="md-whiteframe-z3" class=" md-whiteframe-4dp" flex="noshrink">
       <md-list>
         <md-list-item ">
           <a href=" #!addbook">
@@ -62,6 +64,8 @@
   <script src="../js/mainController/addBookCtr.js"></script>
   <script src="../js/mainController/manageBookCtr.js"></script>
   <link rel=“stylesheet” href='../css/app.css'>
+  <script src="../js/script.js"></script>
+  <script src="../js/loginsc.js"></script>
 
   <script src="../../bower_components/ng-file-upload/ng-file-upload-shim.js"></script>
   <script src="../../bower_components/ng-file-upload/ng-file-upload.js"></script>

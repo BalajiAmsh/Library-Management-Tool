@@ -9,7 +9,7 @@ $logn = json_decode(file_get_contents("php://input"));
 $email = $logn->email;
 $password = base64_encode($logn->spassword);
 
-$validation_error = '';
+$statusmsg = '';
 if (empty($email)) {
     $error[] = 'Email is Required';
 } else {
@@ -28,6 +28,7 @@ if (empty($password)) {
 $sql = $pdo->prepare("select * from libmember where email='$email' and password='$password'");
 $sql->execute();
 $result = $sql->fetch(PDO::FETCH_ASSOC);
+extract($result);
 
 
 
@@ -37,18 +38,20 @@ $result = $sql->fetch(PDO::FETCH_ASSOC);
 $autherncation = 0;
 if ($result == '') {
     $autherncation = 0;
-    $validation_error = 'Invalid username or password';
+    $statusmsg = 'Invalid username or password';
 } else {
     $autherncation = 1;
-    $validation_error = 'Login Successfully';
+    $statusmsg = 'Login Successfully';
 }
 
 // print_r($autherncation);
 
 $output = array(
     'error' => $ERROR,
-    'status' => $validation_error,
-    'Authendication' => $autherncation
+    'status' => $statusmsg,
+    'Authendication' => $autherncation,
+    'nameUser' => $name,
+    'actStatus' => $status
 );
 
 echo json_encode($output);
@@ -64,15 +67,15 @@ echo json_encode($output);
 //                 if (password_verify($logn->password, $row["password"])) {
 //                     $_SESSION["name"] = $row["name"];
 //                 } else {
-//                     $validation_error = 'Wrong Password';
+//                     $statusmsg = 'Wrong Password';
 //                 }
 //             }
 //         } else {
-//             $validation_error = 'Wrong Email';
+//             $statusmsg = 'Wrong Email';
 //         }
 //     }
 // } else {
-//     $validation_error = implode(", ", $error);
+//     $statusmsg = implode(", ", $error);
 // }
 
 

@@ -1,5 +1,16 @@
-app.controller('loging', ['$scope', '$http', function ($scope, $http, $routeProvider,) {
+app.controller('loging', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope, $routeProvider, messages) {
     $scope.alm = true;
+
+
+    const self = this;
+    self.addMessage = function (message) {
+        // add message to local service
+        messages.add(message);
+
+        self.newMessage = $scope.userNam;
+    };
+
+
     $scope.logon = function () {
         $http({
             method: "POST",
@@ -12,11 +23,19 @@ app.controller('loging', ['$scope', '$http', function ($scope, $http, $routeProv
             console.log(obj.status);
 
 
-            if (obj.$error == null) {
-                if (obj.Authendication == 1 && obj.status == 'Login Successfully') {
+            if (obj.Authendication == 1) {
+                if (obj.actStatus == 'A') {
+                    // app.run(function ($rootScope) {
+                    //     $rootScope.userName = obj.nameUser
+                    // });
                     $scope.alm = true;
                     $scope.altcls = 'alert-success'
-                    $scope.altmsg = obj.status;
+                    $scope.altmsg = obj.status + obj.nameUser;
+                    $scope.userNam = obj.nameUser;
+                    // addMessage(obj.nameUser);
+                    // $rootScope.username = obj.nameUser;
+
+                    $scope.urleg = 'app/template/main.index.html?' + $scope.userNam;
 
                     // This is Route provider
 
@@ -26,17 +45,15 @@ app.controller('loging', ['$scope', '$http', function ($scope, $http, $routeProv
                     //         href: "http://localhost/ngJS/PROJECT/main.index.html"
                     //     }
                     // }
-                    window.location.replace("app/template/main.index.html");
+                    window.location.replace($scope.urleg);
                 }
-                else {
-                    $scope.alm = true;
-                    $scope.altcls = 'alert-danger'
-                    $scope.altmsg = obj.status;
-                }
-
-            } else {
-                alert('Please Enter Valild email id')
             }
+            else {
+                $scope.alm = true;
+                $scope.altcls = 'alert-danger'
+                $scope.altmsg = obj.status;
+            }
+
 
 
 

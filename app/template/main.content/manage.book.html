@@ -1,10 +1,23 @@
-<div class="container-fluid" ng-controller="manageBookCtr">
-    <h2 class="display-6" layout="row">
-        {{message}}&nbsp;
-        <p class="text-danger">
-            {{msg}}
-        </p>
-    </h2>
+<div class="container-fluid" flex ng-controller="manageBookCtr">
+    <div layout="row">
+        <h2 class="display-6" layout="row">
+            {{message}}&nbsp;
+            <p class="text-danger">
+                {{msg}}
+            </p>
+        </h2>
+        <div ng-show="prmitTable" flex-offset="10">
+            <!-- Rows to display : <input type="number" step="1" min="0" ng-model="numPerPage" /> -->
+            <md-input-container>
+                <label>Rows to Display</label>
+                <input type="number" min="0" step="1" ng-model="numPerPage">
+            </md-input-container>
+            <md-input-container>
+                <label><span class="icon-magnifier"></span> Search</label>
+                <input type="text" ng-model="searchText">
+            </md-input-container>
+        </div>
+    </div>
     <md-button class="md-raised md-warm" ng-click="managingData()" ng-show="prmitBtn">
         Manage Book
     </md-button>
@@ -14,30 +27,49 @@
     <table class="table table-striped" ng-show="prmitTable">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col" ng-click="sortData('id')">
+                    ID <span ng-class="getSortClass('id')"></span>
+                </th>
                 <th scope="col">IMAGE</th>
-                <th scope="col">BOOK NAME</th>
-                <th scope="col">AUTHOR</th>
-                <th scope="col">CATEGORY</th>
-                <th scope="col">BOOK PRICE</th>
-                <th scope="col">ADDED DATE</th>
+                <th scope="col" ng-click="sortData('name')">
+                    BOOK NAME <span ng-class="getSortClass('name')"></span>
+                </th>
+                <th scope="col" ng-click="sortData('Author_name')">
+                    AUTHOR <span ng-class="getSortClass('Author_name')"></span>
+                </th>
+                <th scope="col" ng-click="sortData('category')">
+                    CATEGORY <span ng-class="getSortClass('category')"></span>
+                </th>
+                <th scope="col" ng-click="sortData('book_price')">
+                    BOOK PRICE <span ng-class="getSortClass('book_price')"></span>
+                </th>
+                <th scope="col" ng-click="sortData('add_date')">
+                    ADDED DATE <span ng-class="getSortClass('add_date')"></span>
+                </th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="book in bookContent | filter : paginate ">
+            <tr
+                ng-repeat="book in bookContent | filter : paginate | orderBy:sortColumn:reverseSort | filter:searchText">
                 <th scope="row"> {{ book.id }} </th>
                 <td> <img src=" {{ book.imageURL }} " alt="image of the book" height="52px" class="avt"> </td>
                 <td> {{ book.name | uppercase }} </td>
                 <td> {{ book.Author_name | uppercase }} </td>
                 <td> {{ book.category | lowercase }} </td>
                 <td> {{ book.book_price | currency:"र ":1 }} </td>
-                <td> {{ book.add_date | date:"dd/MMM/yy" }} </td>
+                <td> {{ book.add_date | date : "dd/MMM/y" }} </td>
             </tr>
         </tbody>
     </table>
-    <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
-        items-per-page="numPerPage" class="pagination-sm" ng-show="prmitTable">
-    </pagination>
+
+    <div layout="row">
+        <div flex-offset="20">
+            <pagination total-items="totalItems" ng-model="currentPage" max-size="5" boundary-links="true"
+                items-per-page="numPerPage" class="pagination-sm" ng-show="prmitTable">
+            </pagination>
+        </div>
+    </div>
+
 </div>
 
 
