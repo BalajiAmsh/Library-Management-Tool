@@ -15,12 +15,15 @@ main_app.config(function ($routeProvider, $locationProvider) {
     })
 })
 
-main_app.controller('userFine', ['$scope', function ($scope, $location, $rootElement) {
+main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement) {
 
   // $scope.url = '';
-  $scope.searchObject = $location.search();
+  searchObject = window.location.search;
+  smpName = searchObject.split('?');
+  $scope.Name = smpName[1];
+  $scope.Name = $scope.Name.replace(/%20/g, " ");
 
-  alert($scope.url);
+  // alert($scope.searchObject);
   // var routeParam = $routeParams.paramName
 
   // if ($routeParams.message) {

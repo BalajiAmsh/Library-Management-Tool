@@ -46,6 +46,9 @@
                 <th scope="col" ng-click="sortData('add_date')">
                     ADDED DATE <span ng-class="getSortClass('add_date')"></span>
                 </th>
+                <th>
+                    OPTION
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -57,7 +60,11 @@
                 <td> {{ book.Author_name | uppercase }} </td>
                 <td> {{ book.category | lowercase }} </td>
                 <td> {{ book.book_price | currency:"र ":1 }} </td>
-                <td> {{ book.add_date | date : "dd/MMM/y" }} </td>
+                <td> {{ book.add_date | DateFilter }} </td>
+                <td>
+                    <md-icon md-svg-src='../image/edit.svg' ng-click="editBook(book, $event)"></md-icon>
+                    <md-icon md-svg-src='../image/delete.svg' ng-click="deleteBook(book, $event)"></md-icon>
+                </td>
             </tr>
         </tbody>
     </table>

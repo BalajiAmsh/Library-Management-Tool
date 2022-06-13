@@ -1,0 +1,58 @@
+<md-content class="md-padding" layout-xs="column" layout="row">
+    <div flex-xs>
+        <md-card>
+            <div layout="row">
+                <img ng-src="{{value.imageURL}}" style="height: 500px;" class="md-card-image" alt="Book Image" />
+                <form name="stuForm" method="post">
+
+                    <md-card-content layout="column">
+                        <md-input-container class="md-icon-float" flex="40">
+                            <label>Book ID</label>
+                            <input type="text" name="name" ng-model="value.id" disabled>
+                        </md-input-container>
+                        <div layout="row">
+
+                            <md-input-container class="md-icon-float" flex="40">
+                                <label>Name</label>
+                                <input type="text" name="name" ng-model="value.name">
+                            </md-input-container>
+                            <md-input-container class="md-icon-float" flex="40">
+                                <label>Name</label>
+                                <input type="text" name="name" ng-model="value.Author_name">
+                            </md-input-container>
+
+                        </div>
+
+                        <div layout="row" layout-align="space-around center">
+                            <div>
+                                The Category is : {{ value.category}}
+                            </div>
+                            <div ng-controller="ad_book">
+                                <md-select placeholder="Assign to the Category" ng-model="value.category"
+                                    md-on-open="loadCategories()" class="md-block" style="min-width:200px;">
+                                    <md-option ng-value="category" ng-repeat="category in categories">
+                                        {{category.name}}
+                                    </md-option>
+                                </md-select>
+                            </div>
+                        </div>
+
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Book Serial Number:</label>
+                            <input type="text" rows="5" name="serialNumber" md-no-asterisk ng-model="value.book_no">
+                        </md-input-container>
+                        <md-input-container class="md-icon-float md-block">
+                            <label>Book Price:</label>
+                            <input type="text" rows="5" name="bookPrice" md-no-asterisk ng-model="value.book_price">
+                        </md-input-container>
+
+                        <!-- <pre>
+                                {{value | json}}
+                            </pre> -->
+                        <md-card-actions layout="row" layout-align="end center">
+                            <md-button class="md-raised md-accent" ng-click="updateBook()">Update</md-button>
+                            <md-button class="md-raised md-warm" ng-click="cancel()">Cancel</md-button>
+                        </md-card-actions>
+                    </md-card-content>
+            </div>
+        </md-card>
