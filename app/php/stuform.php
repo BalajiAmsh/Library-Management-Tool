@@ -1,7 +1,7 @@
 <?php
 
 
-require_once('conn.php');
+require('conn.php');
 // getting values from js page
 $form = json_decode(file_get_contents("php://input"));
 
@@ -10,10 +10,8 @@ $email = $form->email;
 $password = base64_encode($form->spassword);
 
 
-$sql = "INSERT INTO libmember ( name,email,password ) VALUES ( '$name', '$email', '$password' )";
-
+$sql = "INSERT INTO libmember ( name,email,password ) VALUES ( '$name', '$email', '$password' );INSERT INTO roamingBook (memberName, memberEmail) VALUES ('$name', '$email')";
 $query = $pdo->prepare($sql);
-
 $result = ($pdo->exec($sql)) ? array('message' => 'registration successfully', 'status' => '1') : array('message' => 'server busy', 'status' => '0');
 
 print_r(json_encode($result));

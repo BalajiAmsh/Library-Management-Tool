@@ -25,26 +25,15 @@ app.controller('loging', ['$scope', '$http', '$rootScope', function ($scope, $ht
 
             if (obj.Authendication == 1) {
                 if (obj.actStatus == 'A') {
-                    // app.run(function ($rootScope) {
-                    //     $rootScope.userName = obj.nameUser
-                    // });
                     $scope.alm = true;
                     $scope.altcls = 'alert-success'
                     $scope.altmsg = obj.status + obj.nameUser;
                     $scope.userNam = obj.nameUser;
-                    // addMessage(obj.nameUser);
-                    // $rootScope.username = obj.nameUser;
+                    $scope.role = obj.Postion;
+                    //For local storage
+                    localStorage.setItem("role", $scope.role);
 
                     $scope.urleg = 'app/template/main.index.html?' + $scope.userNam;
-
-                    // This is Route provider
-
-                    // End of the Route provider!!
-                    // window: {
-                    //     location: {
-                    //         href: "http://localhost/ngJS/PROJECT/main.index.html"
-                    //     }
-                    // }
                     window.location.replace($scope.urleg);
                 }
             }
@@ -55,19 +44,6 @@ app.controller('loging', ['$scope', '$http', '$rootScope', function ($scope, $ht
             }
 
 
-
-
-            // if (data1.error != '') {
-            //     $scope.alertMsg = true;
-            //     $scope.alertClass = 'alert-danger'
-            //     $scope.alertMessage = data1.message;
-            //     if ($scope.message == 'Login Successful') {
-            //         $scope.alertMsg = true;
-            //         alert(data1);
-            //         $scope.alertClass = 'alert-success'
-            //         $scope.alertMessage = data1.message
-            //     }
-            // }
         })
     }
 }])
@@ -75,21 +51,6 @@ app.controller('loging', ['$scope', '$http', '$rootScope', function ($scope, $ht
 
 
 
-
-
-
-
-
-
-// var arr = [];
-// for (var o in data1) {
-//     var cr = {};
-//     cr[o] = data1[o];
-//     arr.push(cr)
-// }
-
-// // const obj = JSON.parse(data);
-// alert(arr)
 
 
 

@@ -46,7 +46,7 @@
                 <th scope="col" ng-click="sortData('add_date')">
                     ADDED DATE <span ng-class="getSortClass('add_date')"></span>
                 </th>
-                <th>
+                <th ng-if="role=='Admin'">
                     OPTION
                 </th>
             </tr>
@@ -61,7 +61,7 @@
                 <td> {{ book.category | lowercase }} </td>
                 <td> {{ book.book_price | currency:"र ":1 }} </td>
                 <td> {{ book.add_date | DateFilter }} </td>
-                <td>
+                <td ng-if=" role=='Admin'">
                     <md-icon md-svg-src='../image/edit.svg' ng-click="editBook(book, $event)"></md-icon>
                     <md-icon md-svg-src='../image/delete.svg' ng-click="deleteBook(book, $event)"></md-icon>
                 </td>

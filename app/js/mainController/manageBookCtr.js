@@ -2,6 +2,7 @@ main_app.controller('manageBookCtr', function ($timeout, $scope, $http, $mdDialo
     $scope.message = "Under the";
     $scope.msg = "Hood";
     $scope.value = $rootScope.detail;
+    $scope.role = localStorage.getItem('role')
     $scope.prmitBtn = true;
     $scope.prmitTable = false;
     $scope.managingData = function () {

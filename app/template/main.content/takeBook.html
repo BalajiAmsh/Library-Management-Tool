@@ -1,0 +1,42 @@
+<div class="container-fluid" ng-controller="takeBookCtrl">
+
+    <md-toolbar layout="row" class="md-warn md-hue-2">
+        <h3 flex=" 35" class="md-flex text-light">Consuming Book</h3>
+    </md-toolbar>
+
+    <div ng-cloak layout="row">
+
+
+        <div class='container' ng-click='containerClicked();'>
+
+            <md-input-container layout="column">
+                <label>Enter Email Here</label>
+                <input type="text" ng-model='searchText' ng-keyup='fetchUsers()' ng-click='searchboxClicked($event);'>
+            </md-input-container>
+            <ul id='searchResult' layout="column">
+                <li ng-click='setValue($index,$event)' ng-repeat="result in searchResult">
+                    {{ result.memberEmail }}
+                </li>
+            </ul>
+
+        </div>
+
+        <div class='container' ng-click='containerClicked();'>
+
+            <md-input-container layout="column">
+                <label>Enter Book Name</label>
+                <input type="text" ng-model='searchBook' ng-keyup='fetchBooks()' ng-click='searchboxClicked($event);'>
+            </md-input-container>
+            <ul id='searchResult' layout="column">
+                <li ng-click='setValueBook($index,$event)' ng-repeat="result in searchBookResult">
+                    {{ result.name }}
+                </li>
+            </ul>
+
+        </div>
+
+    </div>
+
+
+
+</div>

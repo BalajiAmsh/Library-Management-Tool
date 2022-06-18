@@ -6,6 +6,8 @@ app.controller('sending', ['$scope', '$http', function ($scope, $http) {
             method: "POST",
             url: './app/php/stuform.php',
             data: $scope.udata
+        }).then(function (res) {
+            window.location.replace("#!signUp");
         })
 
     }

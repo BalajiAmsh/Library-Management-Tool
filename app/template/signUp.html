@@ -12,7 +12,7 @@
     <form name="stuForm" method="post">
         <md-input-container class="md-icon-float md-block">
             <label>Name</label>
-            <input type="text" rows="5" name="name" md-maxlength="30" ng-pattern="/^[a-zA-Z" "" ]\w{3,30}$/" required
+            <input type="text" rows="5" name="name" md-maxlength="30" ng-pattern="/^[a-zA-Z. ]\w{3,30}$/" required
                 md-no-asterisk ng-model="udata.name">
             <div ng-messages="stuForm.name.$error">
                 <div ng-message="pattern">Name should be more then 3 letters</div>

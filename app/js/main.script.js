@@ -13,15 +13,34 @@ main_app.config(function ($routeProvider, $locationProvider) {
       templateUrl: "main.content/manage.book.html",
       controller: 'manageBookCtr'
     })
+    .when("/takeBook", {
+      templateUrl: "main.content/takeBook.html",
+      controller: 'takeBookCtrl'
+    })
+    .when("/returnBook", {
+      templateUrl: 'main.content/returnBook.html',
+      controller: 'returnBookCtrl'
+    })
 })
+main_app.config(function ($mdThemingProvider) {
+  $mdThemingProvider.theme('customTheme')
+    .primaryPalette('grey')
+    .accentPalette('orange')
+    .warnPalette('red');
+});
 
-main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement) {
+function themeController($scope) {
+}
 
-  // $scope.url = '';
+main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement, $rootScope) {
+
   searchObject = window.location.search;
   smpName = searchObject.split('?');
   $scope.Name = smpName[1];
   $scope.Name = $scope.Name.replace(/%20/g, " ");
+  $scope.role = localStorage.getItem('role')
+
+
 
   // alert($scope.searchObject);
   // var routeParam = $routeParams.paramName

@@ -51,6 +51,7 @@ $output = array(
     'status' => $statusmsg,
     'Authendication' => $autherncation,
     'nameUser' => $name,
+    'Postion' => $role,
     'actStatus' => $status
 );
 

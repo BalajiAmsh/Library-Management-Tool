@@ -4,11 +4,13 @@ create table libmember(
     email varchar(50) default '',
     password varchar(75) default '',
     status enum('A','IA') default 'A',
+    role enum('Admin','Student') default 'Student',
     add_by varchar(22) default 'Library Admin' ,
     add_date datetime default now(),
     update_by varchar(22) default '',
     updated_date timestamp default now(),
-    PRIMARY KEY(id)
+    PRIMARY KEY(id),
+    UNIQUE (email)
 );
 
 
