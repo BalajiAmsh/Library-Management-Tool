@@ -1,7 +1,10 @@
-main_app.controller('takeBookCtrl', function ($scope, $http) {
+main_app.controller('takeBookCtrl', function ($scope, $http, $filter, $mdToast, $document, $route) {
     $scope.morning = 'We are in the Take Book Controller';
 
-
+    const d = new Date();
+    d.setDate(d.getDate() + 29);
+    $scope.todayDate = $filter('date')(Date.now(), 'yyyy-MM-dd');
+    $scope.submitDate = $filter('date')(d, 'yyyy-MM-dd');
 
     // Custome Function for Email AutoComplete
     $scope.fetchUsers = function () {
@@ -75,4 +78,36 @@ main_app.controller('takeBookCtrl', function ($scope, $http) {
         $scope.searchBookResult = {};
     }
 
+    $scope.commitProcess = function () {
+        $scope.Data = {
+            'BookName': $scope.searchBook,
+            'memName': $scope.searchText,
+            'todayDate': $scope.todayDate,
+            'returnDate': $scope.submitDate,
+            'action': "takeBook"
+        }
+        $http({
+            method: 'POST',
+            url: '../php/main.content/process.php',
+            data: $scope.Data
+        }).then(function (res) {
+            obj = JSON.stringify(res.data);
+            obj = JSON.parse(obj);
+            if (obj.Status = '1') {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(obj.Message)
+                        .hideDelay(12000)
+                );
+                $route.reload();
+            }
+            else {
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(obj.Message)
+                        .hideDelay(12000)
+                );
+            }
+        })
+    }
 })

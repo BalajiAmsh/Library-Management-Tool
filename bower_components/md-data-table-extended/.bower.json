@@ -1,0 +1,45 @@
+{
+  "name": "md-data-table-extended",
+  "version": "0.1.0",
+  "description": "Material Design data table for AngularJS.",
+  "main": [
+    "dist/md-data-table.js",
+    "dist/md-data-table.css"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sh4hids/md-data-table-extended.git"
+  },
+  "authors": [
+    "Shahidul Islam Majumder"
+  ],
+  "homepage": "http://danielnagy.me/md-data-table",
+  "license": "MIT",
+  "keywords": [
+    "material",
+    "table",
+    "md-data-table"
+  ],
+  "ignore": [
+    "**/.*",
+    "app",
+    "bower_components",
+    "node_modules",
+    "src",
+    "Gruntfile.js"
+  ],
+  "dependencies": {
+    "angular": "^1.4.0",
+    "angular-material": "^1.0.0"
+  },
+  "_release": "0.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "0.1.0",
+    "commit": "dede1029497a42c077548bae4e51afb2dc5cd5e5"
+  },
+  "_source": "https://github.com/sh4hids/md-data-table-extended.git",
+  "_target": "^0.1.0",
+  "_originalSource": "angular-material-data-table-extended",
+  "_direct": true
+}

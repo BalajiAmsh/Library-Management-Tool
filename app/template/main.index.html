@@ -11,18 +11,34 @@
   <link rel="stylesheet" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="../../bower_components/simplelineicons/css/simple-line-icons.css">
   <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
+  <!-- <link rel="stylesheet" href="../../bower_components/md-data-table-extended/dist/md-data-table.css"> -->
 
 </head>
 
 <body ng-app="user" ng-cloak layout="column">
 
   <md-toolbar layout="row" ng-controller="userFine">
-    <h3 flex="60">
+    <h3 flex="70">
       <img src="../image/fixed-banner-image.svg" height="100px;" alt="logo-icon">
       Library Management Tool
     </h3>
-    <div layout-padding layout="column" layout-align="center">
+    <div layout-padding layout="row" layout-align="center center">
       {{ Name }}
+      <md-menu>
+        <md-button aria-label="Open User Action" class="md-icon-button" ng-click="$mdMenu.open($event)">
+          <span class="icon-menu"></span>
+        </md-button>
+        <md-menu-content width="4">
+          <md-menu-item>
+            <md-button ng-click="logout(Name,$event)">
+              <div layout="row" flex>
+                <p flex> Logout </p>
+                <span class="icon-logout"></span>
+              </div>
+            </md-button>
+          </md-menu-item>
+        </md-menu-content>
+      </md-menu>
     </div>
   </md-toolbar>
 
@@ -95,6 +111,7 @@
   <script src="../../bower_components/ng-file-upload/ng-file-upload.js"></script>
   <script src="http://code.angularjs.org/1.2.16/angular-resource.js"></script>
   <script src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.11.0.js"></script>
+  <script src="../../bower_components/md-data-table-extended/dist/md-data-table.js"></script>
   <!-- <script src="../../bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script> -->
   <!-- End of the Script files  -->
 

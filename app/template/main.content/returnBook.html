@@ -1,3 +1,48 @@
-<md-toolbar layout="row" class="md-accent md-hue-2" ng-controller="takeBookCtrl" ng-init="loadEmail()">
+<md-toolbar layout="row" class="md-accent md-hue-2" ng-controller="returnBookCtrl">
     <h3 flex=" 35" class="md-flex text-light">Returning Book</h3>
 </md-toolbar>
+<div layout="row" layout-align="end">
+    <md-input-container>
+        <label><span class="icon-magnifier"></span> Search</label>
+        <input type="text" ng-model="searchText">
+    </md-input-container>
+</div>
+
+<table class="table table-striped" ng-init="fetchDetail('All')">
+    <thead>
+        <tr>
+            <th scope="col" ng-click="sortData('name')">
+                Name <span ng-class="getSortClass('name')"></span>
+            </th>
+            <th>Email</th>
+            <th scope="col" ng-click="sortData('bookName')">
+                BOOK NAME <span ng-class="getSortClass('bookName')"></span>
+            </th>
+            <th scope="col" ng-click="sortData('bookId')">
+                Book ID <span ng-class="getSortClass('bookId')"></span>
+            </th>
+            <th scope="col" ng-click="sortData('takenDate')">
+                FROM DATE <span ng-class="getSortClass('takenDate')"></span>
+            </th>
+            <th scope="col" ng-click="sortData('returnDate')">
+                RETURN DATE <span ng-class="getSortClass('returnDate')"></span>
+            </th>
+            <th scope="col">Return</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="detail in details | orderBy:sortColumn:reverseSort | filter:searchText">
+            <td>{{ detail.memberName | uppercase }}</td>
+            <td>{{ detail.memberEmail }}</td>
+            <td>{{detail.bookName | uppercase }}</td>
+            <td>{{ detail.bookId }}</td>
+            <td>{{ detail.takenDate | DateFilter }}</td>
+            <td>{{ detail.returnDate | DateFilter }}</td>
+            <td>
+                <md-button class="md-raised md-warm" ng-click="editdetail(detail, $event)">
+                    Returned
+                </md-button>
+            </td>
+        </tr>
+    </tbody>
+</table>

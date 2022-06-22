@@ -4,39 +4,94 @@
         <h3 flex=" 35" class="md-flex text-light">Consuming Book</h3>
     </md-toolbar>
 
-    <div ng-cloak layout="row">
+    <form name="assign">
+
+        <div ng-cloak layout="row">
 
 
-        <div class='container' ng-click='containerClicked();'>
+            <div class='container' ng-click='containerClicked();'>
 
-            <md-input-container layout="column">
-                <label>Enter Email Here</label>
-                <input type="text" ng-model='searchText' ng-keyup='fetchUsers()' ng-click='searchboxClicked($event);'>
-            </md-input-container>
-            <ul id='searchResult' layout="column">
-                <li ng-click='setValue($index,$event)' ng-repeat="result in searchResult">
-                    {{ result.memberEmail }}
-                </li>
-            </ul>
+                <md-input-container layout="column">
+                    <label>Enter Email Here</label>
+                    <input type="text" name="UserName" ng-model='searchText' ng-keyup='fetchUsers()'
+                        ng-click='searchboxClicked($event);'>
+                </md-input-container>
+                <ul id='searchResult' layout="column">
+                    <li ng-click='setValue($index,$event)' ng-repeat="result in searchResult">
+                        {{ result.memberEmail }}
+                    </li>
+                </ul>
+
+            </div>
+
+            <div class='container' ng-click='containerClicked();'>
+
+                <md-input-container layout="column">
+                    <label>Enter Book Name</label>
+                    <input type="text" name="TakenBook" ng-model='searchBook' ng-keyup='fetchBooks()'
+                        ng-click='searchboxClicked($event);'>
+                </md-input-container>
+                <ul id='searchResult' layout="column">
+                    <li ng-click='setValueBook($index,$event)' ng-repeat="result in searchBookResult">
+                        {{ result.name }}
+                    </li>
+                </ul>
+
+            </div>
 
         </div>
 
-        <div class='container' ng-click='containerClicked();'>
-
-            <md-input-container layout="column">
-                <label>Enter Book Name</label>
-                <input type="text" ng-model='searchBook' ng-keyup='fetchBooks()' ng-click='searchboxClicked($event);'>
-            </md-input-container>
-            <ul id='searchResult' layout="column">
-                <li ng-click='setValueBook($index,$event)' ng-repeat="result in searchBookResult">
-                    {{ result.name }}
-                </li>
-            </ul>
-
+        <div class="container" ng-hide="true">
+            <input type="date" name="todayDate" id="todayDate" ng-model="todayDate" disabled>
+            <input type="date" name="submitDate" id="submitDate" ng-model="submitDate" disabled>
         </div>
 
-    </div>
+        <div class="container" layout="column">
 
+            <div class="container" layout="row">
+                <div layout="column" layout-align="center center">
+                    <p style="font-size:16px; margin-left: 12px;">From Date: &emsp;</p>
+                </div>
+                <div class="container" ng-hide="false">
+                    <md-input-container class="md-block" flex="40">
+                        <label>From Date</label>
+                        <md-datepicker name="todayDate" id="todayDate" ng-model="todayDate" ng-disabled="true">
+                        </md-datepicker>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button class="md-raised">
+                        <md-icon md-svg-src="../image/calender.svg" class="avatar"></md-icon>
+                        {{ todayDate=(todayDate | date:"dd-MMMM-yyyy") }}
+                    </md-button>
+                </div>
 
+            </div>
+            <div class="container mt-4" layout="row">
+                <div layout="column" layout-align="center center">
+                    <p style="font-size:16px;">Return Date: &emsp;</p>
+                </div>
+                <div class="container" ng-hide="false">
+                    <md-input-container class="md-block" flex="40">
+                        <label>Return Date</label>
+                        <md-datepicker name="submitDate" id="submitDate" ng-model="submitDate" ng-disabled="true">
+                        </md-datepicker>
+                    </md-input-container>
+                </div>
+                <div>
+                    <md-button class="md-raised" style="padding-right: 18px;">
+                        <md-icon md-svg-src="../image/calender.svg" class="avatar"></md-icon>
+                        {{ submitDate=(submitDate | date:"dd-MMMM-yyyy") }}
+                    </md-button>
+                </div>
+            </div>
+
+            <div layout="row" layout-align="end">
+                <md-button class="md-warn md-hue-3 md-raised " ng-click="commitProcess()">
+                    Assign Process
+                </md-button>
+            </div>
+        </div>
+    </form>
 
 </div>

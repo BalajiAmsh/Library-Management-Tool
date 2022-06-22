@@ -11,7 +11,7 @@ main_app.filter('DateFilter', function () {
 
         years = year.charAt(2) + year.charAt(3);
         var month = Months[mon - 1]
-        returnDate = date + '/' + month + '/' + years
+        returnDate = date + '-' + month + '-' + years
         return returnDate;
     }
 })

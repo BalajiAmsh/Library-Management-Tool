@@ -67,3 +67,11 @@ md-list-item>button {
     width: 250px;
     letter-spacing: 1px;
 }
+
+.menudemoMenuPositionModes .md-menu-demo {
+    padding: 24px;
+}
+
+.menudemoMenuPositionModes .menu-demo-container {
+    min-height: 200px;
+}

@@ -32,7 +32,7 @@ main_app.config(function ($mdThemingProvider) {
 function themeController($scope) {
 }
 
-main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement, $rootScope) {
+main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement, $mdDialog, $rootScope) {
 
   searchObject = window.location.search;
   smpName = searchObject.split('?');
@@ -40,27 +40,20 @@ main_app.controller('userFine', ['$scope', '$location', function ($scope, $locat
   $scope.Name = $scope.Name.replace(/%20/g, " ");
   $scope.role = localStorage.getItem('role')
 
+  $scope.logout = function (Name, ev) {
+    var confirm = $mdDialog.confirm()
+      .title('Logout From Library Tool' + Name)
+      .textContent('Are you going to Logout !' + Name)
+      .ariaLabel('Logout')
+      .targetEvent(ev)
+      .ok('Logout')
+      .cancel('Cancel')
 
+    $mdDialog.show(confirm).then(function () {
+      window.location.replace('../../index.html')
+    })
+  }
 
-  // alert($scope.searchObject);
-  // var routeParam = $routeParams.paramName
-
-  // if ($routeParams.message) {
-  //   // If a param called 'message' exists, we show it's value as the message
-  //   $scope.userName = $routeParams.message;
-  // } else {
-  //   // If it doesn't exist, we show a default message
-  //   $scope.userName = 'Hello world from Controller Three!';
-  // }
-
-  // $http({
-  //   params: { nameUser: $routeParams.name },
-  // });
-  // $scope.nameUser = nameUser;
-
-  // alert($rootScope.username)
-  // $scope.nameUser = $rootScope.username;
-  // // $scope.msg1 = "hii"
 }]);
 
 
