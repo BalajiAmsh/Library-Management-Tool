@@ -9,14 +9,23 @@ $name = $form->name;
 $email = $form->email;
 $password = base64_encode($form->spassword);
 
+$sql = $pdo->prepare("SELECT * FROM libmember WHERE email='$email'");
+$sql->execute();
+$result = $sql->fetch(PDO::FETCH_ASSOC);
+if (!$result) {
 
-$sql = "INSERT INTO libmember ( name,email,password ) VALUES ( '$name', '$email', '$password' );INSERT INTO roamingBook (memberName, memberEmail) VALUES ('$name', '$email')";
-$query = $pdo->prepare($sql);
-$result = ($pdo->exec($sql)) ? array('message' => 'registration successfully', 'status' => '1') : array('message' => 'server busy', 'status' => '0');
+    $sql = "INSERT INTO libmember ( name,email,password ) VALUES ( '$name', '$email', '$password' );INSERT INTO roamingBook (memberName, memberEmail) VALUES ('$name', '$email')";
+    $query = $pdo->prepare($sql);
+    $result = ($pdo->exec($sql)) ? array('message' => 'Account Created Successfully for ' . $email . '  :) ', 'status' => '1') : array('message' => 'Failed in Creating Account :( ', 'status' => '0');
+} else {
+    $result = array('message' => 'Account Already Exist on ' . $email . ' :(');
+}
+
+
 
 print_r(json_encode($result));
-$last_id = $pdo->lastInsertId();
-echo "New record created successfully. Last inserted ID is: " . $last_id;
+// $last_id = $pdo->lastInsertId();
+// echo "New record created successfully. Last inserted ID is: " . $last_id;
 
 
 

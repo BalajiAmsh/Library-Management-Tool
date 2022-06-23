@@ -46,7 +46,10 @@
                 <th scope="col" ng-click="sortData('add_date')">
                     ADDED DATE <span ng-class="getSortClass('add_date')"></span>
                 </th>
-                <th ng-if="role=='Admin'">
+                <th scope="col">
+                    E-BOOK
+                </th>
+                <th scope="col" ng-if="role=='Admin'">
                     OPTION
                 </th>
             </tr>
@@ -55,12 +58,15 @@
             <tr
                 ng-repeat="book in bookContent | filter : paginate | orderBy:sortColumn:reverseSort | filter:searchText">
                 <th scope="row"> {{ book.id }} </th>
-                <td> <img src=" {{ book.imageURL }} " alt="image of the book" height="52px" class="avt"> </td>
+                <td> <img ng-src=" {{ book.imageURL }} " alt="image of the book" height="52px" class="avt"> </td>
                 <td> {{ book.name | uppercase }} </td>
                 <td> {{ book.Author_name | uppercase }} </td>
                 <td> {{ book.category | lowercase }} </td>
                 <td> {{ book.book_price | currency:"र ":1 }} </td>
                 <td> {{ book.add_date | DateFilter }} </td>
+                <td> <a href="{{ book.eBook_URL }}" target="_blank">
+                        <span class="icon-book-open"></span>
+                    </a> </td>
                 <td ng-if=" role=='Admin'">
                     <md-icon md-svg-src='../image/edit.svg' ng-click="editBook(book, $event)"></md-icon>
                     <md-icon md-svg-src='../image/delete.svg' ng-click="deleteBook(book, $event)"></md-icon>

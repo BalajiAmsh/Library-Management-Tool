@@ -1,4 +1,4 @@
-main_app.controller('ad_book', function ($timeout, $scope, $location, Upload) {
+main_app.controller('ad_book', function ($timeout, $scope, $location, Upload, $mdToast, $document, $mdDialog) {
     $scope.message = "We are in the Register catageory";
 
     $scope.category = null;
@@ -25,13 +25,13 @@ main_app.controller('ad_book', function ($timeout, $scope, $location, Upload) {
 
     $scope.submit = function () {
         if ($scope.bookForm.file.$valid && $scope.file) {
-            $scope.upload($scope.file);
+            $scope.upload($scope.file, $scope.filePDF);
         }
     };
 
 
 
-    $scope.upload = function (file) {
+    $scope.upload = function (file, filePDF) {
         //Here is the Condition to assign the folder
         if ($scope.bookInfo.category.name == 'Philosophy') {
             $scope.tarpath = '/var/www/html/ngJS/mform/app/image/uploadImage/Philosophy/'
@@ -54,7 +54,10 @@ main_app.controller('ad_book', function ($timeout, $scope, $location, Upload) {
         Upload.upload({
             url: '../php/main.content/addBook.php',
             method: 'POST',
-            file: file,
+            file: {
+                'fileImg': file,
+                'filedata': filePDF
+            },
             data: {
                 'bookInfo': $scope.bookInfo,
                 'targetPath': $scope.tarpath
@@ -63,12 +66,20 @@ main_app.controller('ad_book', function ($timeout, $scope, $location, Upload) {
             obj = JSON.stringify(resp.data);
             obj = JSON.parse(obj)
             if (obj.status == 1) {
-                alert(JSON.stringify(obj.message))
-                console.log('Success ' + resp.config.data.file.name + '  uploaded ');
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(obj.message + ' :) ')
+                        .hideDelay(12000)
+                );
                 window.location.replace("#!addbook");
             }
             else {
-                alert(JSON.stringify(obj.message))
+                // alert(JSON.stringify(obj.message))
+                $mdToast.show(
+                    $mdToast.simple()
+                        .textContent(obj.message + ' :) ')
+                        .hideDelay(12000)
+                );
             }
         },
         );

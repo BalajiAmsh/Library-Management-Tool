@@ -30,7 +30,7 @@
         </md-button>
         <md-menu-content width="4">
           <md-menu-item>
-            <md-button ng-click="logout(Name,$event)">
+            <md-button ng-click="logout($event)">
               <div layout="row" flex>
                 <p flex> Logout </p>
                 <span class="icon-logout"></span>
@@ -81,6 +81,16 @@
             </md-button>
           </a>
         </md-list-item>
+
+        <md-list-item>
+          <a href="#!eBook">
+            <md-button class="md-raised md-warm" style="padding-right:54px;">
+              <img src="../image/ebook.png" class="avatar" alt="e-book Books logo">
+              E-Books
+            </md-button>
+          </a>
+        </md-list-item>
+
       </md-list>
     </md-sidenav>
 

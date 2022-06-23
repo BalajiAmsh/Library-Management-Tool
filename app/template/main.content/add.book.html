@@ -70,6 +70,10 @@
                     <input class="form-control" type="file" name="file" ngf-select ng-model="file" id="formFile"
                         ngf-pattern="'image/*'" ngf-accept="'image/*'">
                 </div>
+                <div class="col-6">
+                    <label for="formFile" class="form-label">Upload the e-Book for {{ bookInfo.bookName }}</label>
+                    <input class="form-control" type="file" name="filePDF" ngf-select ng-model="filePDF" id="formFile">
+                </div>
 
                 <!-- <div class="col-4">
                     <button class="btn btn-dark">upload</button>

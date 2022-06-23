@@ -21,6 +21,10 @@ main_app.config(function ($routeProvider, $locationProvider) {
       templateUrl: 'main.content/returnBook.html',
       controller: 'returnBookCtrl'
     })
+    .when("/eBook", {
+      templateUrl: "main.content/eBook.html",
+      controller: 'manageBookCtr'
+    })
 })
 main_app.config(function ($mdThemingProvider) {
   $mdThemingProvider.theme('customTheme')
@@ -32,7 +36,7 @@ main_app.config(function ($mdThemingProvider) {
 function themeController($scope) {
 }
 
-main_app.controller('userFine', ['$scope', '$location', function ($scope, $location, $rootElement, $mdDialog, $rootScope) {
+main_app.controller('userFine', function ($scope, $location, $rootElement, $mdDialog, $rootScope) {
 
   searchObject = window.location.search;
   smpName = searchObject.split('?');
@@ -40,21 +44,21 @@ main_app.controller('userFine', ['$scope', '$location', function ($scope, $locat
   $scope.Name = $scope.Name.replace(/%20/g, " ");
   $scope.role = localStorage.getItem('role')
 
-  $scope.logout = function (Name, ev) {
+  $scope.logout = function (ev) {
     var confirm = $mdDialog.confirm()
-      .title('Logout From Library Tool' + Name)
-      .textContent('Are you going to Logout !' + Name)
+      .title('Logout From Library Tool')
+      .textContent('Are you going to Logout !')
       .ariaLabel('Logout')
       .targetEvent(ev)
       .ok('Logout')
       .cancel('Cancel')
 
     $mdDialog.show(confirm).then(function () {
-      window.location.replace('../../index.html')
+      window.location.replace('../../index.html#!/sAdmin')
     })
   }
 
-}]);
+});
 
 
 

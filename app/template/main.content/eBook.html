@@ -1,0 +1,46 @@
+<div class="container-fluid" ng-controller="manageBookCtr" ng-init="managingData()">
+
+    <md-toolbar layout="row" class="md-warn md-hue-2">
+        <h3 flex=" 35" class="md-flex text-light">E-Book <span class="icon-book-open"></span></h3>
+    </md-toolbar>
+    <div layout="row" layout-align="end">
+        <md-input-container>
+            <label><span class="icon-magnifier"></span> Search</label>
+            <input type="text" ng-model="searchText">
+        </md-input-container>
+    </div>
+
+    <div class="row" ng-repeat="book in bookContent | filter:searchText"">
+        <div class=" 6">
+        <a href="{{ book.eBook_URL }}" target="_blank" id="card-text">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="{{ book.imageURL }}" class="img-fluid rounded-start" alt="Book Front Cover">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <h3 class="text-danger">{{ book.name | uppercase }}</h3>
+                            </h5>
+                            <p class="card-text">
+                                AUTHOR NAME: &nbsp;{{ book.Author_name | uppercase }}<br>
+                                CATEGORY: &nbsp;{{ book.category | uppercase }} <br>
+                                BOOK SERIAL NUMBER: &nbsp;{{ book.book_no }}<br>
+                            </p>
+                            <p class="card-text"><small class="text-muted">Add Date {{ book.add_date | DateFilter
+                                    }}</small></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+
+<!-- <ul >
+        <li> {{ book.eBook_URL }} </li>
+    </ul> -->
+
+</div>
